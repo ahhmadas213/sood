@@ -14,42 +14,35 @@ export default function ServicesPage() {
   const services = [
     {
       icon: <Palette className="h-12 w-12" />,
-      title: "تصميم شعارات",
-      subtitle: "رمز يحكيك",
-      description: "نبتكر رمزاً يحمل جوهر علامتك، بسيطاً، مميزاً، ويسرد قصتك دون أن يقول الكثير.",
-      features: ["بحث بصري أولي", "مفاهيم متعددة", "صياغات نهائية متعددة (نسخ)", "دليل استخدام الشعار (نسخة مختصرة)"],
+      title: "تصميم الهوية البصرية",
+      subtitle: "لغة بصرية متكاملة",
+      description: "نحوّل رؤية علامتك إلى تجربة بصرية متكاملة تشمل الألوان، الخطوط، الأنماط، والتطبيقات لتعبر عنك بدقة وجمال.",
+      features: ["دليل هوية شامل", "تصميم تطبيقات بصرية", "إرشادات استخدام العلامة"],
+      link: "/services/branding",
       color: "#FFC107",
     },
     {
       icon: <Layers className="h-12 w-12" />,
-      title: "بناء هوية بصرية",
-      subtitle: "لغة بصرية متكاملة",
-      description: "نُحوّل علامتك إلى تجربة بصرية متكاملة: ألوان، خطوط، صوت، ونغم بصري متسق يعبر عنك في كل نقطة تواصل.",
-      features: [
-        "دليل هوية (لوحة ألوان، خطوط، أنماط)",
-        "تطبيقات: بطاقات، أغلفة، تواصل اجتماعي",
-        "نسخ للـ Visual Assets",
-        "دليل استخدام شامل",
-      ],
+      title: "أستراتيجية العلامة التجارية",
+      subtitle: "نرسم ملامح علامتك",
+      description: "نرسم ملامح علامتك من الداخل للخارج؛ نحدد رؤيتها، رسالتها، وقيمها لتصبح أكثر وضوحاً وقوة في السوق.",
+      features: ["جلسات استكشافية", "تحليل تنافسي", "تحديد نبرة الصوت"],
+      link: "/services/strategy",
       color: "#2DD4BF",
     },
     {
       icon: <Share2 className="h-12 w-12" />,
-      title: "تصميمات السوشيال",
-      subtitle: "تواصل بصري يجذب العين",
-      description: "محتوى بصري يجذب ويُمضي برؤيتك إلى جمهورك، بصيغة متسقة مع هويتك.",
-      features: [
-        "ستوري/بوست",
-        "قوالب قابلة لإعادة الاستخدام",
-        "تناغم مع الحملة الموسمية أو إطلاق",
-        "محتوى متسق مع الهوية",
-      ],
+      title: "الرسوم التجريدية والهندسية",
+      subtitle: "فن يعزز هويتك",
+      description: "نبتكر تركيبات فنية مستوحاة من الأشكال الهندسية والتجريدية لتعزيز هوية علامتك بأسلوب معاصر وأنيق.",
+      features: ["تصاميم فريدة", "استخدامات متعددة", "أسلوب فني معاصر"],
+      link: "/services/illustration",
       color: "#FFC107",
     },
   ]
 
   return (
-    <div className="min-h-screen bg-[#1B1B1D] text-[#F5F5F7]" dir="rtl">
+    <div className="min-h-screen bg-almost-black text-[#F5F5F7]" dir="rtl">
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
@@ -70,8 +63,7 @@ export default function ServicesPage() {
             <div key={index} className={`${index % 2 === 1 ? "bg-[#252528]" : ""} py-16 px-4 rounded-3xl`}>
               <div className="max-w-6xl mx-auto">
                 <div
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
-                >
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
                   {/* Content */}
                   <div className={`space-y-8 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
                     <div className="space-y-4">
@@ -83,7 +75,7 @@ export default function ServicesPage() {
                     <p className="text-lg text-[#F5F5F7] leading-relaxed">{service.description}</p>
 
                     <div className="space-y-4">
-                      <h3 className="text-xl font-bold text-[#F5F5F7]">ما يتضمنه العرض:</h3>
+                      <h3 className="text-xl font-bold text-[#F5F5F7]">ما تتضمنه الخدمة:</h3>
                       <div className="space-y-3">
                         {service.features.map((feature, featureIndex) => (
                           <div key={featureIndex} className="flex items-center space-x-3 space-x-reverse">
@@ -99,15 +91,15 @@ export default function ServicesPage() {
                       className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4"
                       asChild
                     >
-                      <Link href="/contact">ابدأ مشروعك</Link>
+                      <Link href={service.link}>اعرف المزيد</Link>
                     </Button>
                   </div>
 
                   {/* Visual */}
                   <div className={`${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
-                    <Card className="bg-[#1B1B1D] border-[#2F2F33] overflow-hidden">
+                    <Card className="bg-almost-black border-[#2F2F33] overflow-hidden">
                       <CardContent className="p-0">
-                        <div className="aspect-square bg-gradient-to-br from-[#252528] to-[#1B1B1D] flex items-center justify-center">
+                        <div className="aspect-square bg-gradient-to-br from-[#252528] to-almost-black flex items-center justify-center">
                           <div style={{ color: service.color }} className="opacity-20">
                             {service.icon}
                           </div>
@@ -122,35 +114,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">خطوات العمل</h2>
-            <p className="text-xl text-[#B0B0B8] max-w-2xl mx-auto">عملية واضحة ومنظمة لضمان أفضل النتائج</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "تواصل أو احجز", description: "نبدأ بفهم احتياجاتك ورؤيتك" },
-              { step: "02", title: "جلسة استكشاف", description: "نتعمق في تفاصيل مشروعك وأهدافك" },
-              { step: "03", title: "تنفيذ التصميم", description: "نبدع الحلول البصرية المناسبة" },
-              { step: "04", title: "التسليم والدعم", description: "نسلم العمل مع الدعم المستمر" },
-            ].map((process, index) => (
-              <Card key={index} className="bg-[#1B1B1D] border-[#2F2F33] text-center">
-                <CardContent className="p-8 space-y-4">
-                  <div className="text-4xl font-bold text-[#FFC107]">{process.step}</div>
-                  <h3 className="text-xl font-bold text-[#F5F5F7]">{process.title}</h3>
-                  <p className="text-[#B0B0B8]">{process.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-[#252528]">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold">مستعد لبدء مشروعك؟</h2>
@@ -163,7 +128,7 @@ export default function ServicesPage() {
                 className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4 text-lg"
                 asChild
               >
-                <Link href="/contact">احجز استشارة مجانية</Link>
+                <Link href="/book">احجز استشارة مجانية</Link>
               </Button>
               <Button
                 size="lg"

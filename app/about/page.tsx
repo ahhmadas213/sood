@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Heart, Eye, Users, Palette } from "lucide-react"
+import { Heart, Eye, Users, Palette, Download } from "lucide-react"
 import Link from "next/link"
 
 export const metadata = {
@@ -34,14 +34,14 @@ export default function AboutPage() {
   ]
 
   const whyChooseUs = [
-    "تصميم مخصص وفقاً لهويتك",
-    "تجربة تعاون سلسة",
-    "ملف تعريفي احترافي قابل للتحميل",
-    "دعم بعد التسليم ودليل استخدام الهوية",
+    "تصميم مخصص بدقة.",
+    "تجربة تواصل سلسة.",
+    "ملف تعريفي قابل للتحميل.",
+    "دعم ما بعد التسليم.",
   ]
 
   return (
-    <div className="min-h-screen bg-[#1B1B1D] text-[#F5F5F7]" dir="rtl">
+    <div className="min-h-screen bg-almost-black text-[#F5F5F7]" dir="rtl">
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
@@ -49,8 +49,7 @@ export default function AboutPage() {
             <Badge className="bg-[#FFC107] text-black text-lg px-4 py-2">من نحن</Badge>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">سُود ليست مجرد استوديو</h1>
             <p className="text-xl md:text-2xl text-[#B0B0B8] leading-relaxed">
-              هي مساحة تُشبَع بالفن، نفسّره في كل تفصيل من تفاصيل هويتك. نعمل على دمج الإبداع مع الهدف لنصنع علامات تُحفر في
-              الذاكرة.
+              هي مساحة تُشبَع بالفن، نفسّره في كل تفصيل من تفاصيل هويتك. نعمل على دمج الإبداع مع الهدف لنصنع علامات تُحفر في الذاكرة.
             </p>
           </div>
         </div>
@@ -94,17 +93,17 @@ export default function AboutPage() {
       <section className="py-20 px-4 bg-[#252528]">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">من يقف خلف الاستوديو</h2>
-            <Card className="bg-[#1B1B1D] border-[#2F2F33] p-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">من يقف خلف سُود</h2>
+            <Card className="bg-almost-black border-[#2F2F33] p-8">
               <CardContent className="space-y-6">
                 <div className="w-32 h-32 bg-[#FFC107] rounded-full mx-auto flex items-center justify-center">
                   <span className="text-4xl font-bold text-black">س</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-[#F5F5F7] mb-2">فريق سُود</h3>
-                  <p className="text-[#B0B0B8] mb-4">مُصممو العلامات</p>
+                  <h3 className="text-2xl font-bold text-[#F5F5F7] mb-2">أحمد</h3>
+                  <p className="text-[#B0B0B8] mb-4">مصمم علامات يدمج البساطة بالتفرّد</p>
                   <p className="text-[#F5F5F7] leading-relaxed">
-                    يدمج بين البساطة والتفرد في كل عمل. كل مشروع بالنسبة لنا هو تعاون، كل علامة لها بصمتها الخاصة.
+                    نحن فريق من المصممين والمبدعين الذين يتشاركون شغفًا بتحويل الأفكار إلى هويات بصرية مؤثرة. كل مشروع بالنسبة لنا هو فرصة لخلق شيء فريد لا يُنسى.
                   </p>
                 </div>
               </CardContent>
@@ -132,6 +131,19 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+            <div className="text-center mt-12">
+                <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[#2DD4BF] text-[#2DD4BF] hover:bg-[#2DD4BF] hover:text-black px-8 py-4 text-lg bg-transparent"
+                    asChild
+                >
+                    <Link href="/profile">
+                        <Download className="ml-2 h-5 w-5" />
+                        تحميل الملف التعريفي
+                    </Link>
+                </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -148,7 +160,7 @@ export default function AboutPage() {
                 className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4 text-lg"
                 asChild
               >
-                <Link href="/contact">ابدأ مشروعك</Link>
+                <Link href="/book">ابدأ مشروعك</Link>
               </Button>
               <Button
                 size="lg"

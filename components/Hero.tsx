@@ -4,7 +4,7 @@ import Image from 'next/image'
 import CurvedLoop from './CurvedLoop/CurvedLoop'
 import CircularText from './CircularText/CircularText'
 import Link from 'next/link'
-import { ArrowBigLeft, MoveLeft } from 'lucide-react'
+import { ArrowBigLeft, ArrowUpRight, MoveLeft } from 'lucide-react'
 import CircularGallery from './CircularGallery/CircularGallery'
 import useMediaQuery from '@/hooks/useMediaQuery'
 
@@ -57,9 +57,9 @@ function Hero() {
           priority
         />
         {/* Gradient overlay for smooth transition */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1B1B1D] z-[1] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-almost-black z-[1] pointer-events-none"></div>
         
-        <div className=" md:pt-50 pt-30  mx-auto text-center relative z-10 p-8 flex flex-col min-h-screen">
+        <div className=" md:pt-50 pt-30  mx-auto text-center relative z-10 p-4 flex flex-col min-h-screen">
           <div className=" space-y-8 flex flex-col flex-grow">
             <h1 className="text-5xl sm:text-5xl md:text-7xl font-bold leading-tight text-white">
               سُود
@@ -74,7 +74,7 @@ function Hero() {
               </div>
               مساحة مُشبعة بالفن
             </h1>
-            <p className="text-base sm:text-lg md:text-3xl font-light text-[#D1D1D1]  mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-3xl font-light text-light-gray  mx-auto leading-relaxed">
               نحو هوية بصرية تروى قصتك بصمتٍ جميل. نصمم للعلامات التي لا تُنسى.
             </p>
             {/* two shapse */}
@@ -104,8 +104,8 @@ function Hero() {
                   </div>
 
                   <div className='mt-4 flex items-center gap-4'>
-                    <Link href="/" className='p-3 bg-white/50 w-fit rounded-2xl '>
-                        <MoveLeft />
+                    <Link href="/" className='p-6 bg-white/50 w-fit rounded-2xl '>
+                        <ArrowUpRight className={`w-6 h-6 transition-colors duration-300`}/>
 
                     </Link>
 
@@ -118,7 +118,7 @@ function Hero() {
               </div>
 
               {/* second */}
-              <div className='col-span-1 md:col-span-2 w-full h-full bg-[#D1D1D1] backdrop-blur-sm min-h-60 rounded-3xl'>
+              <div className='col-span-1 md:col-span-2 w-full h-full bg-light-gray backdrop-blur-sm min-h-60 rounded-3xl'>
                 <CircularGallery items={GalleryItems}  scrollSpeed={0.3} bend={isSmallScreen ? 1 : 3}  textColor="#ffffff" borderRadius={0.1} scrollEase={0.02}/>
 
               </div>

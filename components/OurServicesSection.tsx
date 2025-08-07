@@ -3,7 +3,6 @@
 
 import React, { useRef, useEffect } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
@@ -48,7 +47,7 @@ const ServicesCard = ({
                 src={image}
                 alt={title}
                 fill
-                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="object-cover transition-transform duration-500 ease-in-out "
               />
             </div>
             <div className="my-6 flex justify-between items-end gap-4 text-right">
@@ -60,8 +59,8 @@ const ServicesCard = ({
                  {/* Conditional styling for the button */}
                 <span className={`flex-shrink-0 flex items-center justify-center w-12 h-12 border rounded-2xl cursor-pointer transition-all duration-300
                   ${isActive 
-                    ? 'bg-green-400 border-green-400' 
-                    : 'border-[#3A3A3A] group-hover:border-green-400 group-hover:bg-green-400'}`
+                    ? 'bg-orange-200 border-orange-200' 
+                    : 'border-[#3A3A3A] group-hover:border-orange-200 group-hover:bg-orange-200'}`
                 }>
                   <ArrowUpRight className={`w-6 h-6 transition-colors duration-300
                     ${isActive 
@@ -115,6 +114,7 @@ function OurServicesSection() {
     // Use GSAP Context for safe cleanup
     const ctx = gsap.context(() => {
       // Animate the section header
+      if (!sectionRef.current || !gridRef.current) return;
       gsap.from(sectionRef.current.querySelectorAll('.section-header-anim'), {
         opacity: 0,
         y: 50,
@@ -149,7 +149,7 @@ function OurServicesSection() {
   }, []);
 
   return (
-     <section ref={sectionRef} className="py-20 px-4 text-right bg-[#1B1B1D] overflow-hidden">
+     <section ref={sectionRef} className="py-20 px-4 text-right bg-almost-black overflow-hidden">
         <div className="container mx-auto">
           <div className="text-right mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white section-header-anim">خدماتنا</h2>

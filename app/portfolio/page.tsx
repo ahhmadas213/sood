@@ -17,11 +17,7 @@ export default function PortfolioPage() {
       title: "شركة تقنية ناشئة",
       client: "تك إنوفيشن",
       category: "هوية بصرية متكاملة",
-      description: "هوية بصرية حديثة لشركة ناشئة في مجال التقنية المالية",
-      challenge: "إنشاء هوية تعكس الابتكار والثقة في القطاع المالي",
-      solution: "تصميم شعار ديناميكي مع نظام ألوان يجمع بين الاحترافية والحداثة",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["شعار", "هوية بصرية", "تطبيقات رقمية"],
       year: "2024",
     },
     {
@@ -29,11 +25,7 @@ export default function PortfolioPage() {
       title: "مطعم فاخر",
       client: "مذاق الأصالة",
       category: "شعار + هوية",
-      description: "تصميم شعار وهوية بصرية لمطعم يقدم المأكولات التراثية بلمسة عصرية",
-      challenge: "الموازنة بين التراث والحداثة في التصميم",
-      solution: "شعار يجمع بين الخط العربي التقليدي والتصميم المعاصر",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["شعار", "هوية بصرية", "مطبوعات"],
       year: "2024",
     },
     {
@@ -41,11 +33,7 @@ export default function PortfolioPage() {
       title: "متجر أزياء",
       client: "أناقة عصرية",
       category: "سوشيال ميديا",
-      description: "حملة سوشيال ميديا متكاملة لمتجر أزياء نسائية راقية",
-      challenge: "إنشاء محتوى بصري يجذب الفئة المستهدفة ويعكس أناقة العلامة",
-      solution: "قوالب متسقة مع لوحة ألوان أنثوية راقية وتصوير احترافي",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["سوشيال ميديا", "تصوير", "قوالب"],
       year: "2024",
     },
     {
@@ -53,11 +41,7 @@ export default function PortfolioPage() {
       title: "عيادة طبية",
       client: "مركز الشفاء الطبي",
       category: "هوية بصرية",
-      description: "هوية بصرية شاملة لمركز طبي متخصص في طب الأسرة",
-      challenge: "إنشاء هوية تبعث على الثقة والراحة للمرضى",
-      solution: "تصميم يجمع بين الاحترافية الطبية والدفء الإنساني",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["شعار", "هوية بصرية", "لافتات"],
       year: "2023",
     },
     {
@@ -65,11 +49,7 @@ export default function PortfolioPage() {
       title: "شركة استشارات",
       client: "رؤى للاستشارات",
       category: "هوية بصرية متكاملة",
-      description: "هوية بصرية لشركة استشارات إدارية ومالية",
-      challenge: "التعبير عن الخبرة والاحترافية في مجال الاستشارات",
-      solution: "تصميم متوازن يعكس الجدية والإبداع في الحلول",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["شعار", "هوية بصرية", "مطبوعات"],
       year: "2023",
     },
     {
@@ -77,19 +57,15 @@ export default function PortfolioPage() {
       title: "كافيه متخصص",
       client: "قهوة الحرفيين",
       category: "شعار + تطبيقات",
-      description: "هوية بصرية لكافيه متخصص في القهوة المحمصة يدوياً",
-      challenge: "إبراز الطابع الحرفي والجودة العالية للقهوة",
-      solution: "تصميم يجمع بين البساطة والدفء مع لمسات حرفية",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["شعار", "تغليف", "لافتات"],
       year: "2023",
     },
   ]
 
-  const categories = ["الكل", "هوية بصرية", "شعار", "سوشيال ميديا", "تطبيقات"]
+  const categories = ["الكل", "هوية بصرية متكاملة", "شعار + هوية", "سوشيال ميديا", "هوية بصرية", "شعار + تطبيقات"]
 
   return (
-    <div className="min-h-screen bg-[#1B1B1D] text-[#F5F5F7]" dir="rtl">
+    <div className="min-h-screen bg-almost-black text-[#F5F5F7]" dir="rtl">
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
@@ -154,14 +130,6 @@ export default function PortfolioPage() {
                     <h3 className="text-xl font-bold text-[#F5F5F7] mb-1">{item.title}</h3>
                     <p className="text-[#2DD4BF] text-sm">{item.client}</p>
                   </div>
-                  <p className="text-[#B0B0B8] text-sm leading-relaxed">{item.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="secondary" className="bg-[#1B1B1D] text-[#B0B0B8] text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
                   <Button
                     variant="ghost"
                     className="text-[#FFC107] hover:text-[#FFDB5C] p-0 h-auto font-semibold"
@@ -178,27 +146,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "50+", label: "مشروع مكتمل" },
-              { number: "30+", label: "عميل راضي" },
-              { number: "3", label: "سنوات خبرة" },
-              { number: "100%", label: "رضا العملاء" },
-            ].map((stat, index) => (
-              <div key={index} className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold text-[#FFC107]">{stat.number}</div>
-                <div className="text-[#B0B0B8]">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-[#252528]">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold">مستعد لتكون التالي؟</h2>
@@ -209,7 +158,7 @@ export default function PortfolioPage() {
                 className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4 text-lg"
                 asChild
               >
-                <Link href="/contact">ابدأ مشروعك الآن</Link>
+                <Link href="/book">ابدأ مشروعك الآن</Link>
               </Button>
               <Button
                 size="lg"

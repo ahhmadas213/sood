@@ -21,7 +21,7 @@ export function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[#1B1B1D]/95 backdrop-blur-sm border-b border-[#2F2F33]" dir="rtl">
+    <nav className="fixed top-0 w-full z-50 bg-almost-black/95 backdrop-blur-sm border-b border-[#2F2F33]" dir="rtl">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -54,7 +54,7 @@ export function Navigation() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-[#1B1B1D] border-[#2F2F33]">
+            <SheetContent side="right" className="bg-almost-black border-[#2F2F33]">
               <div className="flex flex-col space-y-6 mt-8">
                 {navItems.map((item) => (
                   <Link
