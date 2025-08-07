@@ -33,7 +33,7 @@ function CTASection() {
             <div className="mt-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-orange-300 hover:bg-orange-200 transition-all text-almost-black text-base duration-300 sm:text-xl md:text-3xl font-bold px-6 sm:px-8 py-3 sm:py-5 rounded-full shadow-md"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-orange-300 hover:bg-orange-200 transition-all text-almost-black text-base duration-300 sm:text-xl md:text-2xl font-bold px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-md"
               >
                 ابدأ رحلتك معنا
                 <ArrowLeft className="w-8 h-8 sm:w-10 sm:h-10 p-1.5 sm:p-2 bg-white text-almost-black rounded-full flex-shrink-0" />

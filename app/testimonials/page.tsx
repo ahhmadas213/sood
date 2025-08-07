@@ -1,116 +1,163 @@
+'use client';
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Star, Quote } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+// 1. IMPORT HOOKS AND LIBRARIES
+import React, { useRef, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Instagram, Twitter, Ghost, Link2, Star } from "lucide-react";
 
-export const metadata = {
-  title: "آراء العملاء | سُود براندينق",
-  description: "شاهد ما يقوله عملاؤنا عن تجاربهم في بناء وتصميم هوياتهم البصرية معنا.",
+// 2. IMPORT GSAP FOR ANIMATIONS
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+// --- NEW, THEMED DATA STRUCTURE ---
+type SocialLink = {
+  type: 'instagram' | 'x' | 'snapchat' | 'website';
+  url: string;
+};
+
+interface Testimonial {
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  logo: string; // Using logo as the main image
+  socials: SocialLink[];
 }
 
+const testimonialsData: Testimonial[] = [
+  {
+    name: 'أحمد المالكي',
+    role: 'المؤسس والرئيس التنفيذي',
+    company: 'شركة تقنية ناشئة',
+    quote: 'سُود فهموا رؤيتنا قبل أن نعبر عنها. الهوية كانت دقيقة وتحدثت عنا بطريقة لم نتوقعها. كانوا شركاء حقيقيين في كل خطوة.',
+    logo: '/images/gallery-1.webp',
+    socials: [{ type: 'website', url: '#' }],
+  },
+  {
+    name: 'فاطمة السعيد',
+    role: 'مديرة التسويق',
+    company: 'متجر أزياء راقية',
+    quote: 'تعامل احترافي ونتيجة تفوق التوقعات. أصبحت هويتنا البصرية نقطة قوة حقيقية بفضل إبداعهم واهتمامهم بالتفاصيل.',
+    logo: '/images/gallery-2.webp',
+    socials: [{ type: 'instagram', url: '#' }],
+  },
+  {
+    name: 'خالد عبد العزيز',
+    role: 'شريك مؤسس',
+    company: 'استشارات إدارية',
+    quote: 'الدقة في المواعيد والوضوح في التواصل جعلت التجربة سلسة ومثمرة. الهوية التي صمموها لنا كانت انطلاقة قوية في السوق.',
+    logo: '/images/gallery-3.webp',
+    socials: [{ type: 'x', url: '#' }],
+  },
+  {
+    name: 'نورة الشهري',
+    role: 'صاحبة العلامة',
+    company: 'علامة تجارية شخصية',
+    quote: 'لم أتوقع هذا المستوى من الإبداع. لقد حولوا فكرتي المجردة إلى هوية بصرية تتحدث عن نفسها. شكراً لفريق سُود.',
+    logo: '/images/gallery-4.webp',
+    socials: [],
+  },
+];
+
+// Helper to render social icons
+const SocialIcon = ({ type }: { type: SocialLink['type'] }) => {
+  const iconProps = { className: "w-5 h-5 text-light-gray/60 group-hover:text-white transition-colors" };
+  switch (type) {
+    case 'instagram': return <Instagram {...iconProps} />;
+    case 'x': return <Twitter {...iconProps} />;
+    case 'snapchat': return <Ghost {...iconProps} />;
+    case 'website': return <Link2 {...iconProps} />;
+    default: return null;
+  }
+};
+
+
 export default function TestimonialsPage() {
-  const testimonials = [
-    {
-      text: "سُود فهموا رؤيتنا قبل أن نعبر عنها. الهوية كانت دقيقة وتحدثت عنا بطريقة لم نتوقعها. كانوا شركاء حقيقيين في كل خطوة.",
-      author: "أحمد المالكي",
-      company: "شركة تقنية ناشئة",
-      image: "/placeholder-user.jpg",
-      rating: 5,
-    },
-    {
-      text: "تعامل احترافي ونتيجة تفوق التوقعات. أصبحت هويتنا البصرية نقطة قوة حقيقية بفضل إبداعهم واهتمامهم بالتفاصيل.",
-      author: "فاطمة السعيد",
-      company: "متجر أزياء راقية",
-      image: "/placeholder-user.jpg",
-      rating: 5,
-    },
-    {
-      text: "الدقة في المواعيد والوضوح في التواصل جعلت التجربة سلسة ومثمرة. الهوية التي صمموها لنا كانت انطلاقة قوية في السوق.",
-      author: "خالد عبد العزيز",
-      company: "استشارات إدارية",
-      image: "/placeholder-user.jpg",
-      rating: 5,
-    },
-    {
-      text: "لم أتوقع هذا المستوى من الإبداع. لقد حولوا فكرتي المجردة إلى هوية بصرية تتحدث عن نفسها. شكراً لفريق سُود.",
-      author: "نورة الشهري",
-      company: "علامة تجارية شخصية",
-      image: "/placeholder-user.jpg",
-      rating: 5,
-    },
-  ]
+    const mainRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <div className="min-h-screen bg-almost-black text-[#F5F5F7]" dir="rtl">
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge className="bg-[#FFC107] text-black text-lg px-4 py-2">آراء العملاء</Badge>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">تجارب فريدة يرويها شركاؤنا</h1>
-            <p className="text-xl md:text-2xl text-[#B0B0B8] leading-relaxed">
-              كلمات من عملائنا الذين وثقوا بنا. كل رأي يمثل قصة نجاح وتعاون نفخر به.
-            </p>
-          </div>
-        </div>
-      </section>
+    // --- GSAP ANIMATION LOGIC ---
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.utils.toArray<HTMLElement>('.anim-element').forEach((el, i) => {
+                gsap.from(el, {
+                    opacity: 0,
+                    y: 60,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                    }
+                });
+            });
+        }, mainRef);
+        return () => ctx.revert();
+    }, []);
 
-      {/* Testimonials Grid */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="bg-[#252528] border-[#2F2F33] p-8 space-y-6 flex flex-col justify-between"
-              >
-                <Quote className="h-12 w-12 text-[#FFC107] opacity-20" />
-                <p className="text-lg text-[#F5F5F7] leading-relaxed flex-grow">"{testimonial.text}"</p>
-                <div className="flex items-center space-x-4 space-x-reverse">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    width={64}
-                    height={64}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <h3 className="text-xl font-bold text-[#F5F5F7]">{testimonial.author}</h3>
-                    <p className="text-[#B0B0B8]">{testimonial.company}</p>
-                    <div className="flex mt-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-[#FFC107]" fill="#FFC107" />
-                      ))}
-                    </div>
-                  </div>
+    return (
+        <div ref={mainRef} className="min-h-screen bg-almost-black text-light-gray" dir="rtl">
+            
+            {/* Hero Section */}
+            <section className="py-30 px-6 text-center section-reveal">
+                <div className="container mx-auto">
+                  
+                    <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white anim-element">
+                        قصص نجاح نفتخر بها
+                    </h1>
+                    <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed anim-element">
+                        كل شهادة هي دليل على الثقة وشراكة ناجحة. نستعرض هنا كلمات عملائنا الذين وثقوا بنا لنحول رؤيتهم إلى واقع بصري مؤثر.
+                    </p>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">هل تريد أن تكون صوتك التالي هنا؟</h2>
-            <p className="text-xl text-[#B0B0B8] leading-relaxed">
-              نحن متحمسون لسماع قصة علامتك والمساهمة في نجاحها.
-            </p>
-            <Button
-              size="lg"
-              className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4 text-lg"
-              asChild
-            >
-              <Link href="/contact">تواصل معنا</Link>
-            </Button>
-          </div>
+            {/* Testimonials Grid */}
+            <section className="py-16 px-6">
+                <div className="container mx-auto">
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {testimonialsData.map((testimonial, index) => (
+                            <div
+                                key={index}
+                                className="anim-element bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl flex flex-col md:flex-row h-full overflow-hidden min-h-[450px]"
+                            >
+                                <div className="relative w-full md:w-1/2 min-h-[250px] md:min-h-full flex-shrink-0">
+                                    <Image 
+                                        src={testimonial.logo} 
+                                        alt={`شعار ${testimonial.company}`}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                
+                                <div className="w-full md:w-1/2 p-6 flex items-center justify-center">
+                                    <div className='flex flex-col bg-almost-black border border-white/10 p-6 rounded-2xl h-full w-full justify-between'>
+                                        <div>
+                                            <p className="text-light-gray mb-6 leading-relaxed">"{testimonial.quote}"</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-lg text-white">{testimonial.name}</h4>
+                                            <p className="text-sm text-white/60">{testimonial.role}, {testimonial.company}</p>
+                                            <div className="flex items-center gap-3 mt-4">
+                                                {testimonial.socials.map(social => (
+                                                    <a href={social.url} key={social.type} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/10 group" aria-label={social.type}>
+                                                        <SocialIcon type={social.type} />
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            
         </div>
-      </section>
-    </div>
-  )
+    );
 }

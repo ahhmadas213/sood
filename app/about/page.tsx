@@ -1,179 +1,176 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Eye, Users, Palette, Download } from "lucide-react"
-import Link from "next/link"
+'use client';
+import React, { useRef, useEffect } from 'react'; // Import hooks for GSAP
+import { Button } from "@/components/ui/button";
+import { Heart, Eye, Users, Palette, Download, ArrowUpRight, Compass, Clock } from "lucide-react";
+import ScrollReveal from '@/components/ScrollReveal/ScrollReveal';
 
-export const metadata = {
-  title: "عن سُود | استوديو براندينق من مكة",
-  description: "تعرف على رؤية وقيم استوديو سُود، من يقف خلف العلامة، وكيف نصنع هويات بصرية تحمل طابعك الخاص.",
-}
+// 1. IMPORT GSAP FOR ANIMATIONS
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function AboutPage() {
-  const values = [
-    {
-      icon: <Heart className="h-8 w-8" />,
-      title: "الأصالة",
-      description: "نُظهر جوهر كل علامة بكل صدق.",
-    },
-    {
-      icon: <Eye className="h-8 w-8" />,
-      title: "الدقة",
-      description: "نهتم بالتفاصيل التي تُحدث الفرق.",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "التفاعل",
-      description: "نصغي لنُترجم رؤى عملائنا إلى شكل بصري.",
-    },
-    {
-      icon: <Palette className="h-8 w-8" />,
-      title: "الإبداع الهادئ",
-      description: "فن يعبر بصمت، لكنه يُحفر.",
-    },
-  ]
+gsap.registerPlugin(ScrollTrigger);
 
-  const whyChooseUs = [
-    "تصميم مخصص بدقة.",
-    "تجربة تواصل سلسة.",
-    "ملف تعريفي قابل للتحميل.",
-    "دعم ما بعد التسليم.",
-  ]
+// --- DATA (Content remains the same) ---
+const ourValues = [
+  { id: 1, title: "الأصالة", subtitle: "جوهر كل شيء", description: "نؤمن بأن كل علامة تجارية تمتلك بصمة فريدة. مهمتنا هي الكشف عن هذا الجوهر والتعبير عنه بصدق وشفافية، لنخلق هويات لا تُنسى.", image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop", active: true },
+  { id: 2, title: "الدقة", subtitle: "فن التفاصيل", description: "نهتم بأدق التفاصيل التي تصنع الكمال، من اختيار الألوان والخطوط إلى تطبيق الهوية على مختلف المنصات، لأننا ندرك أنها تحدث فرقاً حقيقياً.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop", active: false },
+  { id: 3, title: "الشراكة", subtitle: "نعمل معكم، وليس لكم", description: "نحن لا نعتبر أنفسنا مجرد مزودي خدمة، بل شركاء نجاح. نستمع بعناية، ونتفاعل بشغف، ونعمل يداً بيد لتحقيق رؤيتكم.", image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop", active: false },
+  { id: 4, title: "الإبداع الهادف", subtitle: "فن ذو غاية", description: "إبداعنا ليس عشوائياً، بل هو موجه لخدمة أهداف استراتيجية واضحة. نصمم بجمال، ونفكر بذكاء، لنضمن تحقيق نتائج ملموسة.", active: false }
+];
+const processSteps = [
+  { step: "01", title: "الاستكشاف والتحليل", subtitle: "نغوص في أعماق علامتك", description: "نبدأ بالاستماع لقصتك وفهم أهدافك. نحلل السوق والمنافسين لنحدد نقاط القوة والفرص التي سنبني عليها استراتيجيتنا البصرية." },
+  { step: "02", title: "بناء المفهوم الإبداعي", subtitle: "نرسم ملامح الهوية", description: "نترجم الأفكار والرؤى إلى مفاهيم بصرية ملموسة. في هذه المرحلة، تتشكل الألوان والخطوط والرموز التي ستكون لغة علامتك الخاصة." },
+  { step: "03", title: "التصميم والتنفيذ", subtitle: "نحول الأفكار إلى واقع", description: "نصمم كافة عناصر الهوية بدقة، من الشعار إلى التطبيقات المختلفة، مع ضمان تجربة بصرية متكاملة ومتناغمة عبر جميع المنصات." },
+  { step: "04", title: "التسليم والدعم", subtitle: "شراكة مستمرة", description: "نسلمك ملفاً متكاملاً لهويتك مع دليل استخدام شامل، ونبقى شركاء لك لتقديم الدعم والمشورة لضمان نجاح هويتك على المدى الطويل." }
+];
 
-  return (
-    <div className="min-h-screen bg-almost-black text-[#F5F5F7]" dir="rtl">
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge className="bg-[#FFC107] text-black text-lg px-4 py-2">من نحن</Badge>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">سُود ليست مجرد استوديو</h1>
-            <p className="text-xl md:text-2xl text-[#B0B0B8] leading-relaxed">
-              هي مساحة تُشبَع بالفن، نفسّره في كل تفصيل من تفاصيل هويتك. نعمل على دمج الإبداع مع الهدف لنصنع علامات تُحفر في الذاكرة.
-            </p>
-          </div>
-        </div>
-      </section>
+export default function ModernAboutPage() {
+    const mainRef = useRef<HTMLDivElement>(null);
 
-      {/* Vision Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2DD4BF]">رؤيتنا</h2>
-            <p className="text-xl md:text-2xl text-[#F5F5F7] leading-relaxed">
-              أن تُصبح العلامات التي نعمل معها مرآة لما يميزها، وهوية بصريّة لا تُشبه أحداً.
-            </p>
-          </div>
-        </div>
-      </section>
+    // --- GSAP ANIMATIONS ---
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Animate each section's elements as they enter the viewport
+            gsap.utils.toArray<HTMLElement>('.section-reveal').forEach((section: HTMLElement) => {
+                gsap.from(section.querySelectorAll('.anim-element'), {
+                    opacity: 0,
+                    y: 60,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 85%',
+                    }
+                });
+            });
+            // Parallax effect for floating images in hero
+            gsap.to(".floating-image-1", { y: -100, scrollTrigger: { trigger: ".hero-section", scrub: 1 } });
+            gsap.to(".floating-image-2", { y: -150, scrollTrigger: { trigger: ".hero-section", scrub: 1 } });
+            gsap.to(".floating-image-3", { y: -50, scrollTrigger: { trigger: ".hero-section", scrub: 1 } });
+        }, mainRef);
+        return () => ctx.revert(); // Cleanup GSAP context
+    }, []);
 
-      {/* Values Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">قيمنا</h2>
-            <p className="text-xl text-[#B0B0B8] max-w-2xl mx-auto">المبادئ التي توجه عملنا وتشكل هويتنا</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="bg-[#252528] border-[#2F2F33] hover:border-[#FFC107] transition-colors">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="text-[#FFC107] flex justify-center">{value.icon}</div>
-                  <h3 className="text-xl font-bold text-[#F5F5F7]">{value.title}</h3>
-                  <p className="text-[#B0B0B8]">{value.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">من يقف خلف سُود</h2>
-            <Card className="bg-almost-black border-[#2F2F33] p-8">
-              <CardContent className="space-y-6">
-                <div className="w-32 h-32 bg-[#FFC107] rounded-full mx-auto flex items-center justify-center">
-                  <span className="text-4xl font-bold text-black">س</span>
+    return (
+        <div ref={mainRef} className="min-h-screen bg-[#1B1B1D] text-white overflow-hidden" >
+            {/* Hero Section */}
+            <section className="relative py-32 px-4 hero-section section-reveal">
+                <div className="container mx-auto">
+                    <div className="max-w-6xl mx-auto">
+                        {/* Floating Images with animation classes */}
+                        <div className="floating-image-1 absolute top-20 left-20 w-32 h-32 rounded-2xl overflow-hidden opacity-60 hidden lg:block">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&h=200&fit=crop" alt="" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="floating-image-2 absolute top-40 right-32 w-40 h-40 rounded-2xl overflow-hidden opacity-80 hidden lg:block">
+                            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=200&h=200&fit=crop" alt="" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="floating-image-3 absolute bottom-20 right-20 w-24 h-32 rounded-2xl overflow-hidden opacity-50 hidden lg:block">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=150&h=200&fit=crop" alt="" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="text-center relative z-10">
+                      
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 text-white anim-element">
+                                نصنع هويات تتنفس بالإبداع
+                            </h1>
+                            <p className="text-xl md:text-2xl text-[#D1D1D1] max-w-4xl mx-auto leading-relaxed mb-8 anim-element">
+                                نحن استوديو تصميم متخصص في بناء العلامات التجارية. لا نكتفي بتصميم الشعارات، بل نصنع بصمات بصرية متكاملة تروي قصة علامتك، وتخلق تواصلاً عميقاً ومؤثراً مع جمهورك.
+                            </p>
+                            <div className="inline-flex items-center gap-2 text-[#D1D1D1] text-sm anim-element">
+                                <span>مقرنا مكة،</span>
+                                <span>ونخدم العالم بشغف</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-[#F5F5F7] mb-2">أحمد</h3>
-                  <p className="text-[#B0B0B8] mb-4">مصمم علامات يدمج البساطة بالتفرّد</p>
-                  <p className="text-[#F5F5F7] leading-relaxed">
-                    نحن فريق من المصممين والمبدعين الذين يتشاركون شغفًا بتحويل الأفكار إلى هويات بصرية مؤثرة. كل مشروع بالنسبة لنا هو فرصة لخلق شيء فريد لا يُنسى.
-                  </p>
+            </section>
+
+            {/* Values Section */}
+            <section className="py-32 px-4 section-reveal">
+                <div className="container mx-auto max-w-4xl">
+                    <div className="flex items-center gap-4 mb-16 anim-element">
+                        <Heart className="w-6 h-6 text-[#D1D1D1]" />
+                        
+                        <span className="text-[#D1D1D1] font-medium">قيمنا</span>
+                    </div>
+                    <h2 className="text-5xl md:text-6xl font-bold mb-20 text-white anim-element">
+                        المبادئ التي توجهنا
+                    </h2>
+                    <div className="relative">
+                        <div className="absolute right-2 top-0 bottom-0 w-px bg-[#D1D1D1]/20"></div>
+                        {ourValues.map((item) => (
+                            <div key={item.id} className="relative mb-20 last:mb-0 anim-element">
+                                <div className={`absolute right-0 w-4 h-4 rounded-full border-2 ${item.active ? 'bg-[#FFC107] border-[#FFC107]' : 'bg-[#1B1B1D] border-[#D1D1D1]/40'} z-10`}></div>
+                                <div className="mr-10">
+                                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">{item.title}</h3>
+                                    <p className="text-[#D1D1D1]/60 text-sm mb-4 italic">{item.subtitle}</p>
+                                    <p className="text-[#D1D1D1] text-lg leading-relaxed mb-6">{item.description}</p>
+                                    {item.image && (
+                                        <div className="w-full max-w-lg rounded-2xl overflow-hidden">
+                                            <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">لماذا تختارنا؟</h2>
-              <p className="text-xl text-[#B0B0B8]">ما يميز تجربة العمل معنا</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {whyChooseUs.map((reason, index) => (
-                <div key={index} className="flex items-center space-x-4 space-x-reverse">
-                  <div className="w-8 h-8 bg-[#2DD4BF] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-black font-bold">✓</span>
-                  </div>
-                  <p className="text-lg text-[#F5F5F7]">{reason}</p>
+            {/* Process Section */}
+            <section className="py-32 px-6 section-reveal">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="text-center mb-20">
+                        <div className="inline-flex items-center gap-2 text-[#D1D1D1] font-medium mb-8 anim-element">
+                            ⚡ منهجية عملنا
+                        </div>
+                    </div>
+                    <div className="relative">
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" viewBox="0 0 800 1200">
+                            <path d="M100 100 Q 300 200 400 400 T 600 600 Q 700 700 500 900 T 300 1100" stroke="#D1D1D1" strokeWidth="1" strokeOpacity="0.3" fill="none" strokeDasharray="5,5" />
+                        </svg>
+                        <div className="relative grid gap-16 lg:gap-32">
+                            {processSteps.map((step, index) => (
+                                <div key={step.step} className={`anim-element flex flex-col lg:flex-row items-start gap-8 ${index % 2 === 0 ? 'lg:justify-start' : 'lg:justify-end'}`}>
+                                    <div className={`max-w-md text-center lg:text-right ${index % 2 !== 0 ? 'lg:text-left' : ''}`}>
+                                        <div className={`flex items-center justify-center lg:justify-start gap-4 mb-4 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
+                                            <div className="w-12 h-12 rounded-full border border-[#D1D1D1]/40 flex items-center justify-center">
+                                                <span className="text-[#D1D1D1] font-bold">{step.step}</span>
+                                            </div>
+                                        </div>
+                                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{step.title}</h3>
+                                        <p className="text-[#D1D1D1]/60 text-sm mb-4 italic">{step.subtitle}</p>
+                                        <p className="text-[#D1D1D1] leading-relaxed">{step.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-                <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-[#2DD4BF] text-[#2DD4BF] hover:bg-[#2DD4BF] hover:text-black px-8 py-4 text-lg bg-transparent"
-                    asChild
-                >
-                    <Link href="/profile">
-                        <Download className="ml-2 h-5 w-5" />
-                        تحميل الملف التعريفي
-                    </Link>
-                </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-[#252528]">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">مستعد لبناء هويتك؟</h2>
-            <p className="text-xl text-[#B0B0B8] leading-relaxed">دعنا نتعرف على قصتك ونحولها إلى هوية بصرية مميزة</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                className="bg-[#FFC107] hover:bg-[#FFDB5C] text-black font-semibold px-8 py-4 text-lg"
-                asChild
-              >
-                <Link href="/book">ابدأ مشروعك</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-[#2DD4BF] text-[#2DD4BF] hover:bg-[#2DD4BF] hover:text-black px-8 py-4 text-lg bg-transparent"
-                asChild
-              >
-                <Link href="/portfolio">شاهد أعمالنا</Link>
-              </Button>
-            </div>
-          </div>
+            {/* Team Section */}
+            <section className="py-32 px-6 section-reveal">
+                <div className="container mx-auto max-w-5xl text-center">
+                    <h2 className="text-5xl md:text-6xl font-bold mb-16 text-white anim-element">
+                        من يقف خلف سُود؟
+                    </h2>
+                    <div className="relative anim-element">
+                        <ScrollReveal
+                            // --- UPDATED STYLING FOR SCROLLREVEAL ---
+                            textClassName='text-xl md:text-2xl lg:text-3xl leading-loose text-white/80'
+                            baseOpacity={0}
+                            enableBlur={true}
+                            baseRotation={5}
+                            blurStrength={8}
+                            rotationEnd={"bottom center"}
+                            wordAnimationEnd={"bottom center"}
+                        >
+                            نحن فريق متكامل من المفكرين الاستراتيجيين، والمصممين المبدعين، ورواة القصص البصرية. يجمعنا شغف مشترك بتحويل الأفكار إلى واقع ملموس، وإيمان عميق بأن العمل الجماعي هو سر تقديم حلول استثنائية. كل فرد فينا يضيف خبرة فريدة ورؤية مختلفة، وهذا المزيج هو ما يمكننا من ابتكار هويات بصرية لا تُنسى.
+                        </ScrollReveal>
+                    </div>
+                </div>
+            </section>
         </div>
-      </section>
-    </div>
-  )
+    );
 }

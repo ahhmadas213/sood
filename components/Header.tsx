@@ -45,7 +45,6 @@ const Header = () => {
             <Link href="/services" className="text-white/80 hover:text-white transition-colors duration-300">خدماتنا</Link>
             <Link href="/portfolio" className="text-white/80 hover:text-white transition-colors duration-300">أعمالنا</Link>
             <Link href="/testimonials" className="text-white/80 hover:text-white transition-colors duration-300">آراء العملاء</Link>
-            <Link href="/book" className="text-white/80 hover:text-white transition-colors duration-300">احجز الآن</Link>
           </nav>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.5 }} className="flex items-center space-x-4">
             <Link href="/contact" className="hidden sm:inline-block bg-light-gray text-almost-black px-6 py-2 rounded-md hover:bg-light-gray/20 hover:text-light-gray transition-colors duration-300">
