@@ -12,19 +12,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- DATA (Using your existing data structure) ---
-const portfolioItems = [
-    { id: 7, title: "Doma", client: "DQMA", category: "Visual Identity", image: "/doma/doma-1.webp", year: "2023", size: "large"},
-    { id: 8, title: "Shaden", client: "Shaden", category: "Branding", image: "/shaden/shaden-1.webp", year: "2023", size: "medium"},
-    { id: 9, title: "Mamaventures", client: "Mamaventures", category: "Brand Identity", image: "/mamaventures/mamaventures-1.webp", year: "2023", size: "medium"},
-    { id: 1, title: "شركة تقنية ناشئة", client: "تك إنوفيشن", category: "هوية بصرية متكاملة", image: "/images/gallery-1.webp", year: "2024", size: "large"},
-    { id: 2, title: "مطعم فاخر", client: "مذاق الأصالة", category: "شعار + هوية", image: "/images/gallery-2.webp", year: "2024", size: "medium"},
-    { id: 3, title: "متجر أزياء", client: "أناقة عصرية", category: "سوشيال ميديا", image: "/images/gallery-3.webp", year: "2024", size: "medium"},
-    { id: 4, title: "عيادة طبية", client: "مركز الشفاء الطبي", category: "هوية بصرية", image: "/images/gallery-4.webp", year: "2023", size: "small"},
-    { id: 5, title: "شركة استشارات", client: "رؤى للاستشارات", category: "هوية بصرية متكاملة", image: "/images/gallery-5.webp", year: "2023", size: "small"},
-    { id: 6, title: "كافيه متخصص", client: "قهوة الحرفيين", category: "شعار + تطبيقات", image: "/images/gallery-6.webp", year: "2023", size: "large"}
-];
-const categories = ["الكل", "Visual Identity", "Branding", "Brand Identity", "هوية بصرية متكاملة", "شعار + هوية", "سوشيال ميديا", "هوية بصرية", "شعار + تطبيقات"];
+import { projects as portfolioItems } from '@/lib/projects';
+
+const categories = ["الكل", ...new Set(portfolioItems.map(item => item.category))];
 
 
 export default function ModernPortfolio() {

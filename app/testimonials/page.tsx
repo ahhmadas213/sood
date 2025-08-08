@@ -83,7 +83,7 @@ export default function TestimonialsPage() {
     // --- GSAP ANIMATION LOGIC ---
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.utils.toArray<HTMLElement>('.anim-element').forEach((el, i) => {
+            gsap.utils.toArray<HTMLElement>('.anim-element').forEach((el: HTMLElement, i: number) => {
                 gsap.from(el, {
                     opacity: 0,
                     y: 60,

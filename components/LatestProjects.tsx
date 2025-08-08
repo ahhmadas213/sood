@@ -3,7 +3,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import Link from 'next/link' 
 
 // 1. IMPORT GSAP, FRAMER MOTION & ICONS
 // =====================================

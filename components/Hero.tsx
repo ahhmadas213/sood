@@ -104,7 +104,7 @@ function Hero() {
                   </div>
 
                   <div className='mt-4 flex items-center gap-4'>
-                    <Link href="/" className='p-6 bg-white/50 w-fit rounded-2xl '>
+                    <Link href="/about" className='p-4 bg-white/50 w-fit rounded-2xl '>
                         <ArrowUpRight className={`w-6 h-6 transition-colors duration-300`}/>
 
                     </Link>

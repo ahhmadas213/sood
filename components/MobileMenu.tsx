@@ -17,6 +17,7 @@ const socialLinks = [
   { href: "https://snapchat.com", icon: <FaSnapchat className="h-6 w-6 text-light-gray" />, ariaLabel: "Snapchat profile" },
 ];
 const navLinks = [
+  { title: 'الرئيسية', href: '/' },
   { title: 'من نحن', href: '/about' },
   { title: 'خدماتنا', href: '/services' },
   { title: 'أعمالنا', href: '/portfolio' },

@@ -40,7 +40,19 @@ const servicesData = [
 ];
 
 // Reusable component for each service item
-const ServiceItem = ({ service, isActive, onToggle }) => {
+interface Service {
+    id: number;
+    number: string;
+    title: string;
+    description: string;
+    features: string[];
+}
+
+const ServiceItem = ({ service, isActive, onToggle }: {
+    service: Service;
+    isActive: boolean;
+    onToggle: () => void;
+}) => {
     return (
         <div className="border-b border-white/10">
             <button 
@@ -79,7 +91,7 @@ const ServiceItem = ({ service, isActive, onToggle }) => {
                         <div className="px-4 md:px-8 pb-10 pt-4 max-w-4xl ml-auto mr-12 md:mr-20">
                             <p className="text-light-gray/80 text-base md:text-lg leading-relaxed mb-8">{service.description}</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-8">
-                                {service.features.map(feature => (
+                                {service.features.map((feature: string) => (
                                     <div key={feature} className="flex items-center gap-3">
                                         <CheckCircle className="h-5 w-5 text-white/50 flex-shrink-0" />
                                         <span className="text-light-gray">{feature}</span>
@@ -95,7 +107,7 @@ const ServiceItem = ({ service, isActive, onToggle }) => {
 };
 
 export default function ServicesAccordionPage() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(0);
     const mainRef = useRef<HTMLDivElement>(null);
 
     // --- GSAP ANIMATION LOGIC ---

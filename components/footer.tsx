@@ -27,23 +27,6 @@ export function Footer() {
     <footer className="bg-almost-black  py-12" >
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
-          {/* Logo and Description */}
-          {/* <div className="md:col-span-2 space-y-4">
-            <p className="text-[#B0B0B8] max-w-md">مساحة مُشبعة بالفن. نصمم هويات بصرية تحكي قصتك بصمتٍ جميل.</p>
-            <div className="flex items-center space-x-4 space-x-reverse">
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="https://instagram.com/sooddes" target="_blank">
-                  <Instagram className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/profile.pdf" target="_blank">
-                  <Download className="h-5 w-5 ml-2" />
-                  تحميل البروفايل
-                </Link>
-              </Button>
-            </div>
-          </div> */}
 
           {/* Quick Links */}
           <div className="space-y-4">
