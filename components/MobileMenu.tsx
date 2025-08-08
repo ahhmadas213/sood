@@ -22,7 +22,6 @@ const navLinks = [
   { title: 'خدماتنا', href: '/services' },
   { title: 'أعمالنا', href: '/portfolio' },
   { title: 'آراء العملاء', href: '/testimonials' },
-  { title: 'احجز الآن', href: '/book' },
 ];
 
 // Animation variants remain the same
