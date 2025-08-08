@@ -11,7 +11,7 @@ const socialLinks = [
     ariaLabel: "X (formerly Twitter) profile",
   },
   {
-    href: "https://instagram.com", // Replace with your Instagram link
+    href: "https://www.instagram.com/sooddes/", // Replace with your Instagram link
     icon: <FaInstagram className="h-6 w-6 text-light-gray/80" />,
     ariaLabel: "Instagram profile",
   },
@@ -49,17 +49,20 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-[#F5F5F7]">روابط سريعة</h3>
             <div className="space-y-2">
-              <Link href="/" className="block text-[#B0B0B8] hover:text-orange-200 transition-colors">
+              <Link href="/" className="block text-light-gray hover:text-light-gray/70 transition-colors">
                 الرئيسية
               </Link>
-              <Link href="/about" className="block text-[#B0B0B8] hover:text-orange-200 transition-colors">
+              <Link href="/about" className="block text-light-gray hover:text-light-gray/70 transition-colors">
                 عن سُود
               </Link>
-              <Link href="/services" className="block text-[#B0B0B8] hover:text-orange-200 transition-colors">
+              <Link href="/services" className="block text-light-gray hover:text-light-gray/70 transition-colors">
                 خدماتنا
               </Link>
-              <Link href="/portfolio" className="block text-[#B0B0B8] hover:text-orange-200 transition-colors">
+              <Link href="/portfolio" className="block text-light-gray hover:text-light-gray/70 transition-colors">
                 المعرض
+              </Link>
+              <Link href="/testimonials" className="block text-light-gray hover:text-light-gray/70 transition-colors">
+                آراء العملاء
               </Link>
             </div>
  
@@ -70,7 +73,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold text-[#F5F5F7]">تواصل معنا</h3>
             <div className="space-y-2 text-[#B0B0B8]">
               <p>مكة المكرمة، السعودية</p>
-              <p>sooddes@example.com</p>
+              <p>projects@sooddesign.com</p>
               <p>@sooddes</p>
             </div>
                                  {/* 4. MODERN SOCIAL ICONS */}
